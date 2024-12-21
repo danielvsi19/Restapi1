@@ -1,0 +1,34 @@
+### Get all posts
+@baseUrl = http://localhost:8080
+
+GET {{baseUrl}}/post
+Content-Type: application/json
+
+### Get post by ID (Post ID 6765b3df3eaf1d77d138d6da)
+GET {{baseUrl}}/post/6765b3df3eaf1d77d138d6da
+Content-Type: application/json
+
+### Get post by sender ID (Sender ID 0)
+GET {{baseUrl}}/post?sender=0
+Content-Type: application/json
+
+### Add new post
+POST {{baseUrl}}/post
+Content-Type: application/json
+
+{
+    "title": "Test Post Title",
+    "body": "Test post body",
+    "image": "Test post image URL",
+    "userId": 4
+}
+
+### Update an existing post (Post ID 1)
+PUT {{baseUrl}}/post/6765b3df3eaf1d77d138d6db
+Content-Type: application/json
+
+{
+    "title": "Replacement Post Title",
+    "body": "Replacement post body",
+    "userId": 4
+}
