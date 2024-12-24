@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 
 import postsRouter from "./routers/postsRouter.js";
+import commentsRouter from "./routers/commentsRouter.js";
 import { getCollection } from "./services/postsService.js";
 
 const port = 8080;
@@ -12,7 +13,7 @@ try {
     getCollection();
     
     app.use("/post", postsRouter);
-
+    app.use("/comment", commentsRouter);
     app.listen(port, () => {
         console.log(`[SERVER] App is running on port ${port}.`);
     });

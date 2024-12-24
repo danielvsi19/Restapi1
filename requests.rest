@@ -32,3 +32,44 @@ Content-Type: application/json
     "body": "Replacement post body",
     "userId": 4
 }
+
+
+//comments requests
+### Get all comments
+GET http://localhost:8080/comment
+Content-Type: application/json
+
+### Get comment by ID (Comment ID 6765b3df3eaf1d77d138d6da)
+GET http://localhost:8080/comments/6765b3df3eaf1d77d138d6da
+Content-Type: application/json
+
+### Get comments by user ID (User ID 4)
+GET http://localhost:8080/comments/user/4
+Content-Type: application/json
+
+### Add new comment
+POST http://localhost:8080/comment
+Content-Type: application/json
+
+{
+    "body": "This is a test comment.",
+    "userId": 4,
+    "postId": 1
+}
+
+
+### Update an existing comment (Comment ID 6765b3df3eaf1d77d138d6db)
+PUT http://localhost:8080/comments/6765b3df3eaf1d77d138d6db
+Content-Type: application/json
+
+{
+    "body": "Updated comment body",
+    "userId": 4,
+    "postId": 1
+}
+
+### Delete a comment (Comment ID 6765b3df3eaf1d77d138d6db)
+DELETE http://localhost:8080/comments/6765b3df3eaf1d77d138d6db
+Content-Type: application/json
+
+
