@@ -1,14 +1,15 @@
 import { ObjectId } from "mongodb";
-import getDatabase from "../Connection/connection.js"; // חיבור לבסיס נתונים
+import getDatabase from "../Connection/connection.js";
 
 let commentsCollection;
 
-const getCollection = async () => {
+const getCommentsCollection = async () => {
     const db = await getDatabase();
-    commentsCollection = db.collection("comments"); // יצירת הקולקציה בשם "comments"
+    commentsCollection = db.collection("comments"); 
 };
 
 const addComment = async (comment) => {
+    console.log(comment);
     const result = await commentsCollection.insertOne(comment);
     return result.insertedId;
 };
@@ -27,9 +28,9 @@ const deleteCommentById = async (id) => {
 };
 
 export {
-    getCollection,
     addComment,
     getAllComments,
     getCommentById,
-    deleteCommentById
+    deleteCommentById,
+    getCommentsCollection
 };

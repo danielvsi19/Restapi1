@@ -2,7 +2,6 @@ import StatusCodes from "http-status-codes";
 
 const validateComment = (req, res, next) => {
     const comment = req.body;
-    console.log('Inside validateCommentsMiddleware');
 
     if (typeof comment.body !== 'string' || comment.body.trim() === '') {
         return res.status(StatusCodes.BAD_REQUEST).json({ message: "Comment must contain a body!" });
