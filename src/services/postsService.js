@@ -1,11 +1,9 @@
-import { postsRepository } from "../repositories/postRepository.js";
 import getDatabase from "../Connection/connection.js";
 import { ObjectId } from "mongodb";
 
-let postsIdCounter = postsRepository.length;
 let postsCollection;
 
-const getCollection = async () => {
+const getPostsCollection = async () => {
     const db = await getDatabase();
     postsCollection = db.collection("posts"); 
 };
@@ -16,7 +14,7 @@ const getAllPosts = async () => {
 
 const addPost = async (post) => {
     const result = await postsCollection.insertOne(post);
-    
+
     return result.insertedId;
 };
 
@@ -37,13 +35,11 @@ const updatePostById = async (postId, replacementPost) => {
         { _id: ObjectId.createFromHexString(postId) },
         { $set: replacementPost },
     );
-    
+
     if (result.matchedCount === 0) {
         throw new Error(`Post with ID ${postId} does not exist!`);
     } else {
         return result.modifiedCount;
-
-        postsRepository[postIndex] = { ...postsRepository[postIndex], ...replacementPost };
     };
 };
 
@@ -53,5 +49,8 @@ export {
     getPostById,
     getAllPostsByUserId,
     updatePostById,
-    getCollection,
+    getPostsCollection
 };
+﻿
+
+ 
