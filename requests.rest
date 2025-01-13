@@ -40,11 +40,11 @@ GET http://localhost:8080/comment
 Content-Type: application/json
 
 ### Get comment by ID (Comment ID 6765b3df3eaf1d77d138d6da)
-GET http://localhost:8080/comments/6765b3df3eaf1d77d138d6da
+GET http://localhost:8080/comment/6785504af1a2dd30fc418792
 Content-Type: application/json
 
-### Get comments by user ID (User ID 4)
-GET http://localhost:8080/comments/user/4
+### Get comments by post ID (User ID 4)
+GET http://localhost:8080/comment/post/1
 Content-Type: application/json
 
 ### Add new comment
@@ -53,23 +53,27 @@ Content-Type: application/json
 
 {
     "body": "This is a test comment.",
+    "text": "This is a test comment.",
     "userId": 4,
     "postId": 1
 }
 
 
 ### Update an existing comment (Comment ID 6765b3df3eaf1d77d138d6db)
-PUT http://localhost:8080/comments/6765b3df3eaf1d77d138d6db
+PUT http://localhost:8080/comment/6785504af1a2dd30fc418792
 Content-Type: application/json
 
 {
     "body": "Updated comment body",
+    "text": "Updated comment body",
     "userId": 4,
     "postId": 1
 }
 
+
+
 ### Delete a comment (Comment ID 6765b3df3eaf1d77d138d6db)
-DELETE http://localhost:8080/comments/6765b3df3eaf1d77d138d6db
+DELETE http://localhost:8080/comment/6785504af1a2dd30fc418792
 Content-Type: application/json
 
 

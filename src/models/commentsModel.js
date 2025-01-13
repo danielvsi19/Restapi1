@@ -3,20 +3,24 @@ import mongoose from "mongoose";
 const commentSchema = new mongoose.Schema({
     body: {
         type: String,
-        required: true
+        required: [true, "Body is required"],
+    },
+    text: {
+        type: String,
+        required: [true, "Text is required"],
     },
     userId: {
-        type: Number,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: [true, "User ID is required"],
     },
     postId: {
-        type: Number,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post",
+        required: [true, "Post ID is required"],
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+}, {
+    timestamps: true,
 });
 
 const Comment = mongoose.model("Comment", commentSchema);

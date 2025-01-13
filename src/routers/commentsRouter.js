@@ -15,4 +15,6 @@ commentsRouter.route("/:commentId").put(validateCommentsMiddleware, commentsHand
 
 commentsRouter.route("/:commentId").delete(commentsHandler.deleteCommentByIdHandler);
 
+commentsRouter.get("/post/:postId", commentsHandler.getCommentsByPostIdHandler);
+
 export default commentsRouter;

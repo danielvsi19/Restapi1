@@ -1,36 +1,71 @@
-import { ObjectId } from "mongodb";
-import getDatabase from "../Connection/connection.js";
+import mongoose from 'mongoose';
 
-let commentsCollection;
+const Comment = mongoose.model('Comment', new mongoose.Schema({
+    postId: {
+        type: String,
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    }
+}));
 
-const getCommentsCollection = async () => {
-    const db = await getDatabase();
-    commentsCollection = db.collection("comments"); 
+
+const addComment = async (commentData) => {
+    try {
+        const newComment = new Comment(commentData);
+        await newComment.save();
+        return newComment;
+    } catch (error) {
+        throw error;
+    }
 };
 
-const addComment = async (comment) => {
-    console.log(comment);
-    const result = await commentsCollection.insertOne(comment);
-    return result.insertedId;
+const getCommentsByPostId = async (postId) => {
+    try {
+        const comments = await Comment.find({ postId: postId }).exec();  // מציאת תגובות לפי postId
+        return comments;
+    } catch (error) {
+        console.error(error);
+        throw new Error("Error fetching comments");
+    }
 };
 
 const getAllComments = async () => {
-    return await commentsCollection.find().toArray();
+    try {
+        const comments = await Comment.find({});
+        return comments;
+    } catch (error) {
+        throw error;
+    }
 };
 
-const getCommentById = async (id) => {
-    return await commentsCollection.findOne({ _id: ObjectId(id) });
+const getCommentById = async (commentId) => {
+    try {
+        const comment = await Comment.findById(commentId);
+        return comment;
+    } catch (error) {
+        throw error;
+    }
 };
 
-const deleteCommentById = async (id) => {
-    const result = await commentsCollection.deleteOne({ _id: ObjectId(id) });
-    return result.deletedCount;
+const updateCommentById = async (commentId, updatedData) => {
+    try {
+        const updatedComment = await Comment.findByIdAndUpdate(commentId, updatedData, { new: true });
+        return updatedComment;
+    } catch (error) {
+        throw error;
+    }
 };
 
-export {
-    addComment,
-    getAllComments,
-    getCommentById,
-    deleteCommentById,
-    getCommentsCollection
+const deleteCommentById = async (commentId) => {
+    try {
+        const deleted = await Comment.deleteOne({ _id: commentId });
+        return deleted.deletedCount;
+    } catch (error) {
+        throw error;
+    }
 };
+
+export { addComment, getCommentsByPostId, getAllComments, getCommentById, updateCommentById, deleteCommentById };
