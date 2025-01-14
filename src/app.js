@@ -3,7 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import postsRouter from "./routers/postsRouter.js";
 import commentsRouter from "./routers/commentsRouter.js";
-import getDatabase from "./Connection/connection.js";
+import { getPostsCollection } from "./services/postsService.js";
 
 const port = 8080;
 let db = null;
@@ -25,14 +25,10 @@ const connectToDatabase = async () => {
 
 // חיבור למסד הנתונים באמצעות Mongoose
 connectToDatabase();
+getPostsCollection();
 
 const app = express();
 app.use(express.json());
-
-// הודעה לאחר חיבור למסד הנתונים
-mongoose.connection.once('open', () => {
-    console.log("[SERVER] DB Connected successfully!");
-});
 
 // שימוש במסלולים שלך
 app.use("/post", postsRouter);

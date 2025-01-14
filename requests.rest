@@ -4,12 +4,12 @@
 GET {{baseUrl}}/post
 Content-Type: application/json
 
-### Get post by ID (Post ID 6765b3df3eaf1d77d138d6da)
-GET {{baseUrl}}/post/6765b3df3eaf1d77d138d6da
+### Get post by ID
+GET {{baseUrl}}/post/676ac84f0d029b8c81866b06
 Content-Type: application/json
 
-### Get post by sender ID (Sender ID 0)
-GET {{baseUrl}}/post?sender=0
+### Get post by sender ID
+GET {{baseUrl}}/post?sender=4
 Content-Type: application/json
 
 ### Add new post
@@ -23,8 +23,8 @@ Content-Type: application/json
     "userId": 4
 }
 
-### Update an existing post (Post ID 1)
-PUT {{baseUrl}}/post/6765b3df3eaf1d77d138d6db
+### Update an existing post
+PUT {{baseUrl}}/post/6782c609414828b5e2a37e43
 Content-Type: application/json
 
 {
@@ -39,11 +39,11 @@ Content-Type: application/json
 GET http://localhost:8080/comment
 Content-Type: application/json
 
-### Get comment by ID (Comment ID 6765b3df3eaf1d77d138d6da)
-GET http://localhost:8080/comment/6785504af1a2dd30fc418792
+### Get comment by ID
+GET http://localhost:8080/comment/6786dfa5fe4909664eb0a4b8
 Content-Type: application/json
 
-### Get comments by post ID (User ID 4)
+### Get comments by post ID
 GET http://localhost:8080/comment/post/1
 Content-Type: application/json
 
@@ -59,8 +59,8 @@ Content-Type: application/json
 }
 
 
-### Update an existing comment (Comment ID 6765b3df3eaf1d77d138d6db)
-PUT http://localhost:8080/comment/6785504af1a2dd30fc418792
+### Update an existing comment
+PUT http://localhost:8080/comment/6786dfa5fe4909664eb0a4b6
 Content-Type: application/json
 
 {
@@ -72,8 +72,8 @@ Content-Type: application/json
 
 
 
-### Delete a comment (Comment ID 6765b3df3eaf1d77d138d6db)
-DELETE http://localhost:8080/comment/6785504af1a2dd30fc418792
+### Delete a comment
+DELETE http://localhost:8080/comment/6786dfa5fe4909664eb0a4b6
 Content-Type: application/json
 
 
